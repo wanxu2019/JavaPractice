@@ -60,6 +60,11 @@ public class Train1 {
         return list;
     }
 
+    /**
+     * 求2的n次方对5的余数
+     * @param n
+     * @return
+     */
     public static int subject10(int n){
         if(n==0)return 1;
         else if(n==1)return 2;
