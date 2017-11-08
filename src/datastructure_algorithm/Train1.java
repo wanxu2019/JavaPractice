@@ -76,6 +76,24 @@ public class Train1 {
     public static void show(Object msg){
         System.out.println(msg);
     }
+
+    //泛型static方法
+    public static <AnyType> boolean contains(AnyType[] arr,AnyType x){
+        for(AnyType val:arr)
+            if(x.equals(val))
+                return true;
+        return false;
+    }
+
+    //类型限界+通配符
+    public static <AnyType extends Comparable<? super AnyType>> AnyType findMax(AnyType[] arr){
+        int maxIndex=0;
+        for(int i=1;i<arr.length;i++)
+            if(arr[i].compareTo(arr[maxIndex])>0)
+                maxIndex=i;
+        return arr[maxIndex];
+    }
+
     public static void main(String[] args) {
 
         show(subject5(7));
@@ -85,5 +103,9 @@ public class Train1 {
         subject6("abc");
 
         show(subject10(1000));
+        String arr[]=new String[]{"aa","aaaaa"};
+        Integer arr2[]=new Integer[]{1,2,3};
+        show(contains(arr,"aa"));
+        show(contains(arr2,2));
     }
 }
