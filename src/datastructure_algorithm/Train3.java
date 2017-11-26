@@ -2,6 +2,7 @@ package datastructure_algorithm;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Stack;
 
 /**
@@ -31,6 +32,24 @@ public class Train3 {
         if(exp.equals("+")||exp.equals("-")||exp.equals("*")||exp.equals("/")||exp.equals("("))
             return true;
         return false;
+    }
+
+    /**
+     * 计算符号的优先级
+     * @param op
+     * @return
+     */
+    public static short getOperatorPriority(String op){
+        switch (op){
+            case "+":
+            case "-":
+                return 1;
+            case "*":
+            case "/":
+                return 2;
+            default:
+                throw new IllegalArgumentException("参数不是正确的运算符号！");
+        }
     }
     /**
      * 将表达式分割为一个个的数字与符号
@@ -169,9 +188,9 @@ public class Train3 {
                 }
             }else{
                 newElementList.add(ch);
-                if(i==elementList.size()-2){
-                    newElementList.add(elementList.get(i+1));
-                }
+            }
+            if(i==elementList.size()-2){
+                newElementList.add(elementList.get(i+1));
             }
         }
         System.out.println("splitExpression end!");
@@ -184,7 +203,76 @@ public class Train3 {
      * @return
      */
     public static MyLinkedList<String> convertToPostfix(MyLinkedList<String> elementList){
-        return elementList;
+        MyLinkedList<String> outputList=new MyLinkedList<>();
+        Stack<String> stack=new Stack<>();
+        Iterator<String> iterator=elementList.iterator();
+        while(iterator.hasNext()){
+            String ch=iterator.next();
+            if(isOperator(ch)||ch.equals(")")){
+                //如果是符号的话
+                //如果栈为空
+                if(stack.size()==0){
+                    //压栈
+                    stack.push(ch);
+                }
+                //栈不为空
+                else{
+                    if(ch.equals("(")){
+                        //左括号特殊处理，直接压栈
+                        stack.push(ch);
+                    }
+                    else if(ch.equals(")")){
+                        //一遇到右括号应该马上弹栈
+                        String tempCh;
+                        do {
+                            tempCh=stack.pop();
+                            if(!tempCh.equals("(")) {
+                                outputList.add(tempCh);
+                            }
+                            //不是>而是>=，因为只要当前优先级不是比栈中第一个的优先级小，就应该先算栈中的，从左到右
+                        } while (!tempCh.equals("("));
+                    }
+                    else {
+                        //比较符号与栈中上一个符号的优先级
+                        String previousCh = stack.peek();
+                        if(previousCh.equals("(")) {
+                            //栈里的上一个是左括号，直接压栈
+                            stack.push(ch);
+                        }
+                        else{
+                            short currentPriority = getOperatorPriority(ch);
+                            //如果优先级比上一个符号高
+                            if (currentPriority > getOperatorPriority(previousCh)) {
+                                //压栈
+                                stack.push(ch);
+                            } else {
+                                //弹栈直到当前优先级比栈中高为止
+                                do {
+                                    outputList.add(stack.pop());
+                                    if (stack.size() > 0) {
+                                        previousCh = stack.peek();
+                                        if(previousCh.equals("("))
+                                            break;
+                                    } else {
+                                        break;
+                                    }
+                                    //不是>而是>=，因为只要当前优先级不是比栈中第一个的优先级小，就应该先算栈中的，从左到右
+                                } while (currentPriority >= getOperatorPriority(previousCh));
+                                //再把当前符号压栈
+                                stack.push(ch);
+                            }
+                        }
+                    }
+                }
+            }else{
+                outputList.add(ch);
+            }
+        }
+        //最后全部弹栈
+        while(stack.size()>0){
+            outputList.add(stack.pop());
+        }
+        return outputList;
     }
 
     /**
@@ -193,7 +281,42 @@ public class Train3 {
      * @return
      */
     public static float calcPostfixExpression(MyLinkedList<String> elementList){
-        return 0;
+        Stack<Float> elementStack=new Stack<>();
+        for(int i=0;i<elementList.size();i++){
+            String element=elementList.get(i);
+            if(isOperator(element)){
+                if(elementStack.size()>=2){
+                    //弹出两个数用这个符号作运算
+                    float num2=elementStack.pop();
+                    float num1=elementStack.pop();
+                    float num;
+                    switch (element){
+                        case "+":
+                            num=num1+num2;
+                            break;
+                        case "-":
+                            num=num1-num2;
+                            break;
+                        case "*":
+                            num=num1*num2;
+                            break;
+                        case "/":
+                            num=num1/num2;
+                            break;
+                        default:
+                            throw new IllegalArgumentException("传入后缀表达式中符号有误！");
+                    }
+                    //再压进去
+                    elementStack.push(num);
+                }else{
+                    throw new IllegalArgumentException("传入的后缀表达式非法！");
+                }
+            }else{
+                //如果是数字则直接压栈
+                elementStack.push(Float.parseFloat(element));
+            }
+        }
+        return elementStack.pop();
     }
     //计算表达式
     public static float calcExpression(String expression){
@@ -219,9 +342,32 @@ public class Train3 {
             System.out.println(iterator.next());
         }
         String expression="-2.3*2+4*-5-2.4*3/2+(-2.3/2*-12/2+2)/2+5";
+        expression="1+2*3-5*2+2/1+1";
+        expression="-1.2+2*-3.5-4.5/3";
+        expression="1*((2+3)*4+5)+25";
         System.out.println("expression="+expression);
-        printList(splitExpression(expression));
-
-
+        System.out.println("---------------------------------------------------");
+        System.out.println("after split:");
+        MyLinkedList<String> elementList=splitExpression(expression);
+        printList(elementList);
+        System.out.println("---------------------------------------------------");
+        System.out.println("after convert:");
+        elementList=convertToPostfix(elementList);
+        printList(elementList);
+        System.out.println("---------------------------------------------------");
+        System.out.println("after calc:");
+        System.out.println(expression + "=" + calcPostfixExpression(elementList));
+        System.out.println("---------------------------------------------------");
+        System.out.println("cyclic test:");
+        Scanner scanner=new Scanner(System.in);
+        while(true){
+            System.out.println("请输入表达式：");
+            expression=scanner.next();
+            try {
+                System.out.println(expression + "=" + calcExpression(expression));
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
