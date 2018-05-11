@@ -79,7 +79,7 @@ public class ThreadPoolTest {
 //        a2[3] = 11;
 //        a2[2] = 9;
 //        System.out.println(Arrays.equals(a1, a2));
-//        Arrays.sort(a2);
+//        Arrays.algorithms(a2);
 //        for (int i = 0; i < a2.length; i++)
 //            System.out.print(a2[i]);
 //        //二分查找
@@ -98,7 +98,7 @@ public class ThreadPoolTest {
 //        list.add("b");
 //        list.add("d");
 ////        list.add(null);
-//        list.sort((x, y) -> x.compareTo(y));
+//        list.algorithms((x, y) -> x.compareTo(y));
 //        Collections.reverse(list);
 //        System.out.println(Collections.binarySearch(list, "c"));
 //        list.addAll(list);

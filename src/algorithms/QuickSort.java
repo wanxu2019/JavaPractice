@@ -1,4 +1,4 @@
-package sort;
+package algorithms;
 
 /**
  * Created by Json Wan on 2017/10/7.
@@ -33,9 +33,35 @@ public class QuickSort {
         }
         return i+1;
     }
+    public static int quicksort2(int[] nums,int start,int end){
+        //
+        if(start>=end)
+            return start;
+        int x=nums[start];
+        int l=start,r=end;
+        while(l<r){
+            while(l<r && nums[r]>=x)
+                r--;
+            if(l<r){
+                nums[l]=nums[r];
+                l++;
+            }
+            while(l<r && nums[l]<x)
+                l++;
+            if(l<r){
+                nums[r]=nums[l];
+                r--;
+            }
+        }
+        nums[l]=x;
+        quicksort2(nums,start,l-1);
+        quicksort2(nums,l+1,end);
+        return l;
+    }
     public static void main(String[] args) {
         int nums[]=new int[]{1,3,4,5,2,6,23,3,5,6,343,343,55,6,6,676};
-        quickSort(nums,0,nums.length-1);
+//        quickSort(nums,0,nums.length-1);
+        quicksort2(nums,0,nums.length-1);
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
         }

@@ -1,4 +1,4 @@
-package datastructure_algorithm;
+package algorithms;
 
 /**
  * Created by Json Wan on 2018/5/7.
