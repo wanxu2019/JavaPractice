@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Created by Json Wan on 2018/9/4.
  * Description: 阿里2018秋招模拟笔试编程题
  */
-public class Test {
+public class RobotMove {
 
     private static final int MAX_PATH_LENGTH = 65535;
 
