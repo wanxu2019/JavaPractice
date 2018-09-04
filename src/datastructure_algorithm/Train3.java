@@ -12,7 +12,7 @@ import java.util.Stack;
 public class Train3 {
 
     /**
-     * ´òÓ¡ÁĞ±í
+     * æ‰“å°åˆ—è¡¨
      * @param list
      * @param <T>
      */
@@ -24,7 +24,7 @@ public class Train3 {
     }
 
     /**
-     * ÅĞ¶Ï±í´ïÊ½ÊÇ²»ÊÇÔËËã·û
+     * åˆ¤æ–­è¡¨è¾¾å¼æ˜¯ä¸æ˜¯è¿ç®—ç¬¦
      * @param exp
      * @return
      */
@@ -35,7 +35,7 @@ public class Train3 {
     }
 
     /**
-     * ¼ÆËã·ûºÅµÄÓÅÏÈ¼¶
+     * è®¡ç®—ç¬¦å·çš„ä¼˜å…ˆçº§
      * @param op
      * @return
      */
@@ -48,11 +48,11 @@ public class Train3 {
             case "/":
                 return 2;
             default:
-                throw new IllegalArgumentException("²ÎÊı²»ÊÇÕıÈ·µÄÔËËã·ûºÅ£¡");
+                throw new IllegalArgumentException("å‚æ•°ä¸æ˜¯æ­£ç¡®çš„è¿ç®—ç¬¦å·ï¼");
         }
     }
     /**
-     * ½«±í´ïÊ½·Ö¸îÎªÒ»¸ö¸öµÄÊı×ÖÓë·ûºÅ
+     * å°†è¡¨è¾¾å¼åˆ†å‰²ä¸ºä¸€ä¸ªä¸ªçš„æ•°å­—ä¸ç¬¦å·
      * @param expression
      * @return
      */
@@ -70,9 +70,9 @@ public class Train3 {
             switch(ch){
                 case '.':
                     if(pointSign)
-                        throw new IllegalArgumentException("Ğ¡ÊıµãÊ¹ÓÃ²»µ±£¡");
+                        throw new IllegalArgumentException("å°æ•°ç‚¹ä½¿ç”¨ä¸å½“ï¼");
                     else if(rightBracketSign){
-                        throw new IllegalArgumentException("ÓÒÀ¨ºÅºó²»ÄÜÓĞĞ¡Êıµã£¡");
+                        throw new IllegalArgumentException("å³æ‹¬å·åä¸èƒ½æœ‰å°æ•°ç‚¹ï¼");
                     }
                     else{
                         operatorSign=false;
@@ -92,7 +92,7 @@ public class Train3 {
                 case '8':
                 case '9':
                     if(rightBracketSign){
-                        throw new IllegalArgumentException("ÓÒÀ¨ºÅºó²»ÄÜÓĞĞ¡Êıµã£¡");
+                        throw new IllegalArgumentException("å³æ‹¬å·åä¸èƒ½æœ‰å°æ•°ç‚¹ï¼");
                     }else {
                         operatorSign = false;
                         rightBracketSign=false;
@@ -105,46 +105,46 @@ public class Train3 {
                 case '/':
                 case ')':
                 case '(':
-                    //³ı·ÇÊÇ×óÀ¨ºÅ»ò¸ººÅ£¬·ñÔòÁ½¸ö·ûºÅ²»ÄÜÁ¬ÔÚÒ»Æğ
+                    //é™¤éæ˜¯å·¦æ‹¬å·æˆ–è´Ÿå·ï¼Œå¦åˆ™ä¸¤ä¸ªç¬¦å·ä¸èƒ½è¿åœ¨ä¸€èµ·
                     if(ch!='('&&ch!='-') {
                         if (operatorSign)
-                            throw new IllegalArgumentException("ÔËËã·ûÊ¹ÓÃ²»µ±£¡");
+                            throw new IllegalArgumentException("è¿ç®—ç¬¦ä½¿ç”¨ä¸å½“ï¼");
                     }
-                    //½«Ö®Ç°µÄÔªËØ´æÈë±íÖĞ
+                    //å°†ä¹‹å‰çš„å…ƒç´ å­˜å…¥è¡¨ä¸­
                     if(!element.equals("")) {
                         elementList.add(element);
                         System.out.println(element);
                     }
-                    //Çå³ıËùÓĞ±êÖ¾£¬ÔªËØÇå¿Õ
+                    //æ¸…é™¤æ‰€æœ‰æ ‡å¿—ï¼Œå…ƒç´ æ¸…ç©º
                     minusSign=false;
                     pointSign=false;
                     element="";
-                    //½«¸ÃÔªËØ´æÈë±íÖĞ
+                    //å°†è¯¥å…ƒç´ å­˜å…¥è¡¨ä¸­
                     elementList.add(""+ch);
                     System.out.println(ch);
-                    //±êÖ¾ÖÃÎ»
+                    //æ ‡å¿—ç½®ä½
                     operatorSign = true;
-                    //ÓÒÀ¨ºÅµÄÌØÊâ´¦Àí
+                    //å³æ‹¬å·çš„ç‰¹æ®Šå¤„ç†
                     if(ch==')') {
                             operatorSign=false;
                             rightBracketSign=true;
                             try {
-                                //µ¯Õ»
+                                //å¼¹æ ˆ
                                 bracketStack.pop();
                             } catch (EmptyStackException e) {
-                                throw new IllegalArgumentException("À¨ºÅÊ¹ÓÃ²»µ±£¡");
+                                throw new IllegalArgumentException("æ‹¬å·ä½¿ç”¨ä¸å½“ï¼");
                             }
                     }
-                    //×óÀ¨ºÅµÄÌØÊâ´¦Àí
+                    //å·¦æ‹¬å·çš„ç‰¹æ®Šå¤„ç†
                     else if(ch=='('){
-                        //Ñ¹Õ»
+                        //å‹æ ˆ
                         bracketStack.push('(');
                     }
-                    //¸ººÅµÄÌØÊâ´¦Àí
+                    //è´Ÿå·çš„ç‰¹æ®Šå¤„ç†
                     else if(ch=='-'){
-                        //Á¬ĞøÁ½¸ö¸ººÅ
+                        //è¿ç»­ä¸¤ä¸ªè´Ÿå·
                         if(minusSign)
-                            throw new IllegalArgumentException("¸ººÅÊ¹ÓÃ²»µ±£¡");
+                            throw new IllegalArgumentException("è´Ÿå·ä½¿ç”¨ä¸å½“ï¼");
                         else {
                             minusSign = true;
                         }
@@ -154,14 +154,14 @@ public class Train3 {
                     }
                     break;
                 default:
-                    throw new IllegalArgumentException("·Ç·¨×Ö·û£¡");
+                    throw new IllegalArgumentException("éæ³•å­—ç¬¦ï¼");
             }
-            //×îºóÒ»¸ö×Ö·û
+            //æœ€åä¸€ä¸ªå­—ç¬¦
             if(i==expression.length()-1){
                 if(operatorSign)
-                    throw new IllegalArgumentException("ÔËËã·ûÊ¹ÓÃ²»µ±£¡");
+                    throw new IllegalArgumentException("è¿ç®—ç¬¦ä½¿ç”¨ä¸å½“ï¼");
                 else{
-                    //½«Ö®Ç°µÄÔªËØ´æÈë±íÖĞ
+                    //å°†ä¹‹å‰çš„å…ƒç´ å­˜å…¥è¡¨ä¸­
                     if(!element.equals("")) {
                         elementList.add(element);
                         System.out.println(element);
@@ -170,7 +170,7 @@ public class Train3 {
             }
         }
         MyLinkedList<String> newElementList=new MyLinkedList<>();
-        //½«Ä³Ğ©ÌØÊâµÄ¸ººÅÓëÊı½áºÏ
+        //å°†æŸäº›ç‰¹æ®Šçš„è´Ÿå·ä¸æ•°ç»“åˆ
         for(int i=0;i<elementList.size()-1;i++){
             String ch=elementList.get(i);
             if(ch.equals("-")){
@@ -198,7 +198,7 @@ public class Train3 {
     }
     /**
      *
-     * ½«ÖĞ×º±í´ïÊ½×ª»¯Îªºó×º±í´ïÊ½
+     * å°†ä¸­ç¼€è¡¨è¾¾å¼è½¬åŒ–ä¸ºåç¼€è¡¨è¾¾å¼
      * @param elementList
      * @return
      */
@@ -209,44 +209,44 @@ public class Train3 {
         while(iterator.hasNext()){
             String ch=iterator.next();
             if(isOperator(ch)||ch.equals(")")){
-                //Èç¹ûÊÇ·ûºÅµÄ»°
-                //Èç¹ûÕ»Îª¿Õ
+                //å¦‚æœæ˜¯ç¬¦å·çš„è¯
+                //å¦‚æœæ ˆä¸ºç©º
                 if(stack.size()==0){
-                    //Ñ¹Õ»
+                    //å‹æ ˆ
                     stack.push(ch);
                 }
-                //Õ»²»Îª¿Õ
+                //æ ˆä¸ä¸ºç©º
                 else{
                     if(ch.equals("(")){
-                        //×óÀ¨ºÅÌØÊâ´¦Àí£¬Ö±½ÓÑ¹Õ»
+                        //å·¦æ‹¬å·ç‰¹æ®Šå¤„ç†ï¼Œç›´æ¥å‹æ ˆ
                         stack.push(ch);
                     }
                     else if(ch.equals(")")){
-                        //Ò»Óöµ½ÓÒÀ¨ºÅÓ¦¸ÃÂíÉÏµ¯Õ»
+                        //ä¸€é‡åˆ°å³æ‹¬å·åº”è¯¥é©¬ä¸Šå¼¹æ ˆ
                         String tempCh;
                         do {
                             tempCh=stack.pop();
                             if(!tempCh.equals("(")) {
                                 outputList.add(tempCh);
                             }
-                            //²»ÊÇ>¶øÊÇ>=£¬ÒòÎªÖ»Òªµ±Ç°ÓÅÏÈ¼¶²»ÊÇ±ÈÕ»ÖĞµÚÒ»¸öµÄÓÅÏÈ¼¶Ğ¡£¬¾ÍÓ¦¸ÃÏÈËãÕ»ÖĞµÄ£¬´Ó×óµ½ÓÒ
+                            //ä¸æ˜¯>è€Œæ˜¯>=ï¼Œå› ä¸ºåªè¦å½“å‰ä¼˜å…ˆçº§ä¸æ˜¯æ¯”æ ˆä¸­ç¬¬ä¸€ä¸ªçš„ä¼˜å…ˆçº§å°ï¼Œå°±åº”è¯¥å…ˆç®—æ ˆä¸­çš„ï¼Œä»å·¦åˆ°å³
                         } while (!tempCh.equals("("));
                     }
                     else {
-                        //±È½Ï·ûºÅÓëÕ»ÖĞÉÏÒ»¸ö·ûºÅµÄÓÅÏÈ¼¶
+                        //æ¯”è¾ƒç¬¦å·ä¸æ ˆä¸­ä¸Šä¸€ä¸ªç¬¦å·çš„ä¼˜å…ˆçº§
                         String previousCh = stack.peek();
                         if(previousCh.equals("(")) {
-                            //Õ»ÀïµÄÉÏÒ»¸öÊÇ×óÀ¨ºÅ£¬Ö±½ÓÑ¹Õ»
+                            //æ ˆé‡Œçš„ä¸Šä¸€ä¸ªæ˜¯å·¦æ‹¬å·ï¼Œç›´æ¥å‹æ ˆ
                             stack.push(ch);
                         }
                         else{
                             short currentPriority = getOperatorPriority(ch);
-                            //Èç¹ûÓÅÏÈ¼¶±ÈÉÏÒ»¸ö·ûºÅ¸ß
+                            //å¦‚æœä¼˜å…ˆçº§æ¯”ä¸Šä¸€ä¸ªç¬¦å·é«˜
                             if (currentPriority > getOperatorPriority(previousCh)) {
-                                //Ñ¹Õ»
+                                //å‹æ ˆ
                                 stack.push(ch);
                             } else {
-                                //µ¯Õ»Ö±µ½µ±Ç°ÓÅÏÈ¼¶±ÈÕ»ÖĞ¸ßÎªÖ¹
+                                //å¼¹æ ˆç›´åˆ°å½“å‰ä¼˜å…ˆçº§æ¯”æ ˆä¸­é«˜ä¸ºæ­¢
                                 do {
                                     outputList.add(stack.pop());
                                     if (stack.size() > 0) {
@@ -256,9 +256,9 @@ public class Train3 {
                                     } else {
                                         break;
                                     }
-                                    //²»ÊÇ>¶øÊÇ>=£¬ÒòÎªÖ»Òªµ±Ç°ÓÅÏÈ¼¶²»ÊÇ±ÈÕ»ÖĞµÚÒ»¸öµÄÓÅÏÈ¼¶Ğ¡£¬¾ÍÓ¦¸ÃÏÈËãÕ»ÖĞµÄ£¬´Ó×óµ½ÓÒ
+                                    //ä¸æ˜¯>è€Œæ˜¯>=ï¼Œå› ä¸ºåªè¦å½“å‰ä¼˜å…ˆçº§ä¸æ˜¯æ¯”æ ˆä¸­ç¬¬ä¸€ä¸ªçš„ä¼˜å…ˆçº§å°ï¼Œå°±åº”è¯¥å…ˆç®—æ ˆä¸­çš„ï¼Œä»å·¦åˆ°å³
                                 } while (currentPriority >= getOperatorPriority(previousCh));
-                                //ÔÙ°Ñµ±Ç°·ûºÅÑ¹Õ»
+                                //å†æŠŠå½“å‰ç¬¦å·å‹æ ˆ
                                 stack.push(ch);
                             }
                         }
@@ -268,7 +268,7 @@ public class Train3 {
                 outputList.add(ch);
             }
         }
-        //×îºóÈ«²¿µ¯Õ»
+        //æœ€åå…¨éƒ¨å¼¹æ ˆ
         while(stack.size()>0){
             outputList.add(stack.pop());
         }
@@ -276,7 +276,7 @@ public class Train3 {
     }
 
     /**
-     * ¼ÆËãºó×º±í´ïÊ½µÄÖµ
+     * è®¡ç®—åç¼€è¡¨è¾¾å¼çš„å€¼
      * @param elementList
      * @return
      */
@@ -286,7 +286,7 @@ public class Train3 {
             String element=elementList.get(i);
             if(isOperator(element)){
                 if(elementStack.size()>=2){
-                    //µ¯³öÁ½¸öÊıÓÃÕâ¸ö·ûºÅ×÷ÔËËã
+                    //å¼¹å‡ºä¸¤ä¸ªæ•°ç”¨è¿™ä¸ªç¬¦å·ä½œè¿ç®—
                     float num2=elementStack.pop();
                     float num1=elementStack.pop();
                     float num;
@@ -304,30 +304,30 @@ public class Train3 {
                             num=num1/num2;
                             break;
                         default:
-                            throw new IllegalArgumentException("´«Èëºó×º±í´ïÊ½ÖĞ·ûºÅÓĞÎó£¡");
+                            throw new IllegalArgumentException("ä¼ å…¥åç¼€è¡¨è¾¾å¼ä¸­ç¬¦å·æœ‰è¯¯ï¼");
                     }
-                    //ÔÙÑ¹½øÈ¥
+                    //å†å‹è¿›å»
                     elementStack.push(num);
                 }else{
-                    throw new IllegalArgumentException("´«ÈëµÄºó×º±í´ïÊ½·Ç·¨£¡");
+                    throw new IllegalArgumentException("ä¼ å…¥çš„åç¼€è¡¨è¾¾å¼éæ³•ï¼");
                 }
             }else{
-                //Èç¹ûÊÇÊı×ÖÔòÖ±½ÓÑ¹Õ»
+                //å¦‚æœæ˜¯æ•°å­—åˆ™ç›´æ¥å‹æ ˆ
                 elementStack.push(Float.parseFloat(element));
             }
         }
         return elementStack.pop();
     }
-    //¼ÆËã±í´ïÊ½
+    //è®¡ç®—è¡¨è¾¾å¼
     public static float calcExpression(String expression){
-        //1.·Ö¸î±í´ïÊ½ÎªºÏÀíµÄÊı×ÖÓë·ûºÅ
+        //1.åˆ†å‰²è¡¨è¾¾å¼ä¸ºåˆç†çš„æ•°å­—ä¸ç¬¦å·
         MyLinkedList<String> elementList=splitExpression(expression);
         if(elementList==null){
-            throw new IllegalArgumentException("±í´ïÊ½²»ºÏ·¨£¡");
+            throw new IllegalArgumentException("è¡¨è¾¾å¼ä¸åˆæ³•ï¼");
         }
-        //2.½«ÖĞ×º±í´ïÊ½×ª»¯Îªºó×º±í´ïÊ½
+        //2.å°†ä¸­ç¼€è¡¨è¾¾å¼è½¬åŒ–ä¸ºåç¼€è¡¨è¾¾å¼
         elementList=convertToPostfix(elementList);
-        //3.¼ÆËãºó×º±í´ïÊ½µÄÖµ
+        //3.è®¡ç®—åç¼€è¡¨è¾¾å¼çš„å€¼
         return calcPostfixExpression(elementList);
     }
     public static void main(String[] args) {
@@ -361,7 +361,7 @@ public class Train3 {
         System.out.println("cyclic test:");
         Scanner scanner=new Scanner(System.in);
         while(true){
-            System.out.println("ÇëÊäÈë±í´ïÊ½£º");
+            System.out.println("è¯·è¾“å…¥è¡¨è¾¾å¼ï¼š");
             expression=scanner.next();
             try {
                 System.out.println(expression + "=" + calcExpression(expression));
