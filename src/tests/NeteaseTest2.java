@@ -1,8 +1,10 @@
 package tests;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class AliTest2 {
+public class NeteaseTest2 {
 
     //快速打印
     public static void show(String msg) {

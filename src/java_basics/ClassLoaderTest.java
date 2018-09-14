@@ -15,7 +15,7 @@ public class ClassLoaderTest {
 //            System.out.println(urls[i].toExternalForm());
 //        }
 
-        char han='”¿';
+        char han='Ê∞∏';
         System.out.format("%x", (short) han);
 
         char han2=0x6c38;
