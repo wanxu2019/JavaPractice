@@ -31,14 +31,14 @@ public class wordBreakI {
      * f(i) = f(j) && f(j+1,i); 0 <= j < i;
      *
      */
-    public static boolean bestWordBreak(String s,Set<String> dict){
+    public static boolean bestWordBreak(String string,Set<String> dict){
         //动态规划解法
-        int len = s.length();
+        int len = string.length();
         boolean[] arrays = new boolean[len+1];
         arrays[0] = true;
         for (int i = 1; i <= len; ++i){
             for (int j = 0; j < i; ++j){
-                if (arrays[j] && dict.contains(s.substring(j, i))){
+                if (arrays[j] && dict.contains(string.substring(j, i))){
                     arrays[i] = true;
                     break;
                 }
