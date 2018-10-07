@@ -16,5 +16,14 @@ public class TestString {
         char data[] = {'a', 'b', 'c'};
         String str2 = new String(data);
         System.out.println(str==str2);
+        String s4=new String("abc");
+        String s5=new String("abc");
+        System.out.println(s5==s4);
+        short c=1;
+//        c=c+c;
+        int a=2;
+        a=a+a;
+        long b=2;
+        b=b+b;
     }
 }
