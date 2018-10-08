@@ -15,7 +15,7 @@ public class ClassLoaderTest {
 //            System.out.println(urls[i].toExternalForm());
 //        }
 
-        char han='ÓÀ';
+        char han='æ°¸';
         System.out.format("%x", (short) han);
 
         char han2=0x6c38;
@@ -86,5 +86,6 @@ public class ClassLoaderTest {
         System.out.println(num>>31);
         System.out.println(num>>32);
 //        s0=s0+(short)1;
+
     }
 }

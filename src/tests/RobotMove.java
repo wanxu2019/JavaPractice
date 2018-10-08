@@ -169,6 +169,5 @@ public class RobotMove {
             }
             return UNKNOWN;
         }
-
     }
 }
