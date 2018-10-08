@@ -1,8 +1,6 @@
 package java_basics;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Json Wan on 2018/9/6.
@@ -50,11 +48,12 @@ public class JavaIO {
         }
         show(""+io);
         System.gc();
-        List<String> list=new ArrayList<>();
-        while(true){
-            list.add(new String("hello"));
-        }
+//        List<String> list=new ArrayList<>();
+//        while(true){
+//            list.add(new String("hello"));
+//        }
 //        show("main end");
+        System.nanoTime();
     }
 
     @Override
