@@ -1,2 +1,3 @@
-# JavaPractice
-学习Java特性并实现一些算法
+# Java基础知识+Java实现的一些算法
+### 1.Java原子类（Atomic系列）
+
