@@ -1,8 +1,5 @@
 package java_basics;
 
-import java.net.URISyntaxException;
-import java.net.URL;
-
 /**
  * Created by Json Wan on 2018/2/10.
  * Description:
@@ -15,8 +12,8 @@ public class ClassLoaderTest {
 //            System.out.println(urls[i].toExternalForm());
 //        }
 
-        char han='ÓÀ';
-        System.out.format("%x", (short) han);
+//        char han='æ°¸';
+//        System.out.format("%x", (short) han);
 
         char han2=0x6c38;
         System.out.println(han2);
@@ -86,5 +83,6 @@ public class ClassLoaderTest {
         System.out.println(num>>31);
         System.out.println(num>>32);
 //        s0=s0+(short)1;
+
     }
 }
